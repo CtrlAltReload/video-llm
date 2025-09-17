@@ -1,21 +1,15 @@
 import { Router } from "express";
-import User from "../models/User";
+import * as userController from "../controllers/userController";
 
 const router = Router();
 
-router.post("/", async (req, res) => {
-  try {
-    const user = new User(req.body);
-    await user.save();
-    res.status(201).json(user);
-  } catch (err) {
-    res.status(400).json({ error: (err as Error).message });
-  }
-});
-
-router.get("/", async (_req, res) => {
-  const users = await User.find();
-  res.json(users);
-});
+router.get('/', userController.getAllUsers);                   
+router.get('/:id', userController.getUserById);                
+router.post('/', userController.createUser);                   
+router.put('/:id', userController.updateUser);                 
+router.delete('/:id', userController.deleteUser);              
+router.get('/deleted/all', userController.getDeletedUsers);         
+router.put('/:id/restore', userController.restoreUser);            
+router.delete('/:id/permanent', userController.permanentlyDeleteUser); 
 
 export default router;
