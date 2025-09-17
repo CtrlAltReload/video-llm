@@ -5,6 +5,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import helmet from "helmet";
 import { connectToDatabase } from "../src/config/mongo";
+import './config/passport'
 import passport from "../src/config/passport"; 
 import authRoutes from "./routes/authRoutes";
 import userRoutes from "./routes/userRoutes";
