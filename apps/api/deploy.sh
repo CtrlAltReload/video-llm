@@ -14,9 +14,6 @@ git reset --hard origin/main
 # Go into API folder
 cd apps/api
 
-# Refresh env
-echo "${PROD_ENV}" > .env
-
 # Install dependencies
 npm install --production
 
