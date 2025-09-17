@@ -21,4 +21,5 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           envs: PROD_ENV
           script: |
-            ./video-llm/apps/api/deploy.sh
+            cd /home/ubuntu/video-llm/apps/api
+            ./deploy.sh
