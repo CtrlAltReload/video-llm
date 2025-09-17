@@ -22,6 +22,6 @@ jobs:
           envs: PROD_ENV
           script: |
             cd /home/ubuntu/video-llm/apps/api
-            echo "${PROD_ENV}" > .env
+            echo "${{ secrets.PROD_ENV }}" > .env
             chmod +x deploy.sh
             ./deploy.sh
