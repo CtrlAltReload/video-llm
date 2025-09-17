@@ -1,7 +1,7 @@
 import jwt, { JwtPayload } from "jsonwebtoken";
 import passport from "passport";
 import { Request, Response, NextFunction } from "express";
-import '../config/passport'
+import "../config/passport";
 
 interface User {
   _id: string;
@@ -83,4 +83,61 @@ export const googleAuthCallback = (
       `${process.env.CLIENT_URL}/redirect?token=${token}&refreshToken=${refreshToken}&uid=${user._id}`
     );
   })(req, res, next);
+};
+
+export const getAuthStatus = (req: Request, res: Response) => {
+  if (req.user) {
+    res.json({
+      authenticated: true,
+      user: req.user,
+    });
+  } else {
+    res.json({
+      authenticated: false,
+      user: null,
+    });
+  }
+};
+
+export const logout = (req: Request, res: Response) => {
+  req.logout((err) => {
+    if (err) {
+      console.error("Logout error:", err);
+      return res.status(500).json({ error: "Logout failed" });
+    }
+
+    req.session.destroy((sessionErr) => {
+      if (sessionErr) {
+        console.error("Session destruction error:", sessionErr);
+        return res.status(500).json({ error: "Session cleanup failed" });
+      }
+
+      res.clearCookie("connect.sid");
+      res.json({ message: "Logged out successfully" });
+    });
+  });
+};
+
+export const refreshToken = (req: Request, res: Response) => {
+  const { refreshToken } = req.body;
+
+  if (!refreshToken) {
+    return res.status(401).json({ error: "Refresh token required" });
+  }
+
+  const decoded = verifyRefreshToken(refreshToken);
+
+  if (!decoded) {
+    return res.status(403).json({ error: "Invalid or expired refresh token" });
+  }
+
+  try {
+    const user = { _id: decoded.id, role: decoded.role || "user" };
+    const tokens = createTokens(user);
+
+    res.json(tokens);
+  } catch (err) {
+    console.error("Token refresh failed:", err);
+    res.status(500).json({ error: "Failed to refresh token" });
+  }
 };
