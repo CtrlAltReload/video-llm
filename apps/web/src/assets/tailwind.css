@@ -6,8 +6,9 @@
   --font-epilogue: 'Epilogue', sans-serif;
 
   --color-light-background: #f1eee9;
-  --color-accent: #e85d56;
-  --color-primary: #3e8784;
+  --color-accent: #00c951;
+  /* --color-primary: #3e8784; */
+  --color-primary: #03624c;
   --color-secondary: #d2ffcf;
   --gradient-app: linear-gradient(to right, var(--color-primary), var(--color-secondary));
 }
