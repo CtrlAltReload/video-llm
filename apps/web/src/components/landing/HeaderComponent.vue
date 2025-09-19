@@ -11,16 +11,20 @@ import UiButton from '../UI/UiButton.vue'
         src="@/assets/pathwiz_logo.png
       "
         alt="PathWiz Logo"
-        class="h-8 md:h-12"
+        class="h-4 md:h-8"
       />
     </div>
     <nav class="hidden md:flex">
       <ul class="flex items-center">
         <li class="mr-6">
-          <RouterLink to="/" class="text-gray-600 hover:text-gray-900">Home</RouterLink>
+          <RouterLink to="/" class="text-gray-600 font-epilogue hover:text-gray-900"
+            >HOME</RouterLink
+          >
         </li>
         <li class="mr-6">
-          <RouterLink to="/about" class="text-gray-600 hover:text-gray-900">About</RouterLink>
+          <RouterLink to="/about" class="text-gray-600 hover:text-gray-900 font-epilogue font-bold"
+            >ABOUT</RouterLink
+          >
         </li>
       </ul>
     </nav>

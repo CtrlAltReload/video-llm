@@ -12,7 +12,18 @@ const router = createRouter({
     {
       path: '/home',
       name: 'home',
-      component: () => import('../views/DashboardPage.vue'),
+      component: () => import('../views/DashboardPageRed.vue'),
+    },
+    {
+      path: '/course/:id',
+      name: 'course',
+      component: () => import('../views/CoursePage.vue'),
+      props: (route) => ({ id: route.params.id }),
+    },
+    {
+      path: '/create',
+      name: 'createCourse',
+      component: () => import('../views/CreateCourseRed.vue'),
     },
   ],
 })

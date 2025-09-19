@@ -41,7 +41,7 @@ const classes = computed(() => {
   const base = {
     title: 'font-bold text-gray-900',
     subtitle: 'font-semibold text-gray-700',
-    paragraph: 'font-normal font-epilogue text-gray-600',
+    paragraph: 'font-epilogue ',
   }[props.variant]
 
   return [`text-${props.size}`, base].join(' ')
