@@ -1,21 +1,23 @@
 import { Router } from "express";
-import User from "../models/User";
+import * as userController from "../controllers/userController";
+import { verifyToken } from "../middleware/verifyToken";
 
 const router = Router();
 
-router.post("/", async (req, res) => {
-  try {
-    const user = new User(req.body);
-    await user.save();
-    res.status(201).json(user);
-  } catch (err) {
-    res.status(400).json({ error: (err as Error).message });
-  }
-});
+router.get("/", verifyToken, userController.getAllUsers); 
 
-router.get("/", async (_req, res) => {
-  const users = await User.find();
-  res.json(users);
-});
+router.get("/:id", verifyToken, userController.getUserById);                
+
+router.post("/", verifyToken, userController.createUser);                   
+
+router.put("/:id", verifyToken, userController.updateUser);                 
+
+router.delete("/:id", verifyToken, userController.deleteUser);              
+
+router.get('/deleted/all', verifyToken, userController.getDeletedUsers);         
+
+router.put("/:id/restore", verifyToken, userController.restoreUser);            
+
+router.delete('/:id/permanent', verifyToken, userController.permanentlyDeleteUser); 
 
 export default router;
