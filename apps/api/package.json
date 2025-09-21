@@ -28,7 +28,8 @@
     "node-disk-info": "^1.3.0",
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
-    "winston": "^3.17.0"
+    "winston": "^3.17.0",
+    "agents": "file:apps/agents"
   },
   "devDependencies": {
     "@eslint/js": "^9.35.0",
