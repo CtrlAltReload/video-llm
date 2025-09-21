@@ -229,8 +229,8 @@
                       </div>
                     </div>
                     <button
-                      class="mt-auto transform translate-x-1/2 opacity-0 flex items-center justify-center bg-green-500 rounded-full p-3 group-hover:shadow group-hover:shadow-green-200/30 group-hover:translate-x-0 group-hover:opacity-100 group-hover:block transition-all duration-400"
-                      @click.prevent
+                      class="mt-auto transform translate-x-1/2 opacity-0 flex items-center justify-center bg-green-500 cursor-pointer rounded-full p-3 group-hover:shadow group-hover:shadow-green-200/30 group-hover:translate-x-0 group-hover:opacity-100 group-hover:block transition-all duration-400"
+                      @click="goToCourse(course.id)"
                     >
                       <ChevronRight
                         class="text-gray-500 group-hover:text-black transition-colors duration-200"
@@ -436,6 +436,10 @@ const router = useRouter()
 
 const handleCreateCourse = () => {
   router.push('/create')
+}
+
+const goToCourse = (id: number) => {
+  router.push(`/course/${id}`)
 }
 
 const isEmpty = ref(false)
